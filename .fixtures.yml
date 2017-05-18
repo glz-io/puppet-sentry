@@ -7,3 +7,4 @@ fixtures:
     logrotate: "yo61/logrotate"
     python: "stankevich/python"
     stdlib: "puppetlabs/stdlib"
+    epel: "stahnma/epel"
