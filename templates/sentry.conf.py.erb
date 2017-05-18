@@ -9,12 +9,12 @@ CONF_ROOT = os.path.dirname(__file__)
 
 DATABASES = {
     'default': {
-      'ENGINE': 'sentry.db.postgres',
-	    'NAME': '<%= @db_name %>',
-	    'USER': '<%= @db_user %>',
-	    'PASSWORD': '<%= @db_password %>',
-	    'HOST': '<%= @db_host %>',
-	    'PORT': '<%= @db_port %>',
+        'ENGINE': 'sentry.db.postgres',
+        'NAME': '<%= @db_name %>',
+        'USER': '<%= @db_user %>',
+        'PASSWORD': '<%= @db_password %>',
+        'HOST': '<%= @db_host %>',
+        'PORT': '<%= @db_port %>',
     }
 }
 
@@ -65,7 +65,7 @@ SENTRY_CACHE = 'sentry.cache.redis.RedisCache'
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-	      'LOCATION': ['<%= @memcached_host %>:<%= @memcached_port %>'],
+        'LOCATION': ['<%= @memcached_host %>:<%= @memcached_port %>'],
     }
 }
 
