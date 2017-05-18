@@ -43,17 +43,36 @@ class sentry::setup (
     require => User[$user],
   }
 
-  $rpm_dependencies = [
-    'libffi-devel',
-    'libjpeg-turbo-devel',
-    'libxml2-devel',
-    'libxslt-devel',
-    'openldap-devel',
-    'openssl-devel',
-    'zlib-devel',
-  ]
-
-  ensure_packages( $rpm_dependencies )
+  case $::osfamily {
+    'Debian': {
+      ensure_packages([
+        'build-essential',
+        'libffi-dev',
+        'libjpeg62-turbo-dev',
+        'libxml2-dev',
+        'libxslt1-dev',
+        'libldap2-dev',
+        'libssl-dev',
+        'zlib1g-dev',
+        'libsasl2-dev',
+        'libpq-dev',
+      ])
+    }
+    'RedHat': {
+      ensure_packages([
+        'libffi-devel',
+        'libjpeg-turbo-devel',
+        'libxml2-devel',
+        'libxslt-devel',
+        'openldap-devel',
+        'openssl-devel',
+        'zlib-devel',
+      ])
+    }
+    default: {
+      fail('unsupported OS')
+    }
+  }
 
   python::virtualenv { $path:
     ensure  => present,

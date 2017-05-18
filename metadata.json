@@ -9,7 +9,8 @@
   "issues_url": "https://github.com/covermymeds/puppet-sentry/issues",
   "tags": ["sentry", "getsentry"],
   "operatingsystem_support": [
-    { "operatingsystem":"RedHat", "operatingsystemrelease":[ "7" ] }
+    { "operatingsystem":"RedHat", "operatingsystemrelease":[ "7" ] },
+    { "operatingsystem":"Debian", "operatingsystemrelease":[ "8" ] }
   ],
   "dependencies": [
     { "name": "puppetlabs/apache", "version_requirement": ">= 1.5.0" },
