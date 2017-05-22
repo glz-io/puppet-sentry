@@ -33,9 +33,9 @@ class sentry::service (
   }
 
   exec { 'enable-sentry-services':
-    command     => '/usr/bin/systemctl daemon-reload',
+    command     => 'systemctl daemon-reload',
     refreshonly => true,
-    path        => '/bin:/sbin',
+    path        => '/bin:/usr/bin',
   }
 
   # Sentry Celery Worker
@@ -59,7 +59,7 @@ class sentry::service (
 
   # if the Sentry config changes, do a full restart of the Sentry Celery workers
   exec { 'restart-sentry-worker':
-    command     => '/usr/bin/systemctl stop sentry-worker; /usr/bin/systemctl start sentry-worker',
+    command     => 'systemctl stop sentry-worker; systemctl start sentry-worker',
     path        => '/bin:/usr/bin',
     refreshonly => true,
     subscribe   => Class['::sentry::config'],
@@ -100,7 +100,7 @@ class sentry::service (
 
   # if the Sentry config changes, do a full restart of the Sentry cron worker
   exec { 'restart-sentry-cron':
-    command     => '/usr/bin/systemctl stop sentry-cron; /usr/bin/systemctl start sentry-cron',
+    command     => 'systemctl stop sentry-cron; systemctl start sentry-cron',
     path        => '/bin:/usr/bin',
     refreshonly => true,
     subscribe   => Class['::sentry::config'],
