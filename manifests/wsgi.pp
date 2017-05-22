@@ -27,7 +27,6 @@
 # @param wsgi_threads the number of mod_wsgi threads to use
 #
 class sentry::wsgi (
-  Boolean $apache_enabled = $sentry::apache_enabled,
   $path                   = $sentry::path,
   $publish_dsns           = true,
   $ssl                    = true,
@@ -40,25 +39,10 @@ class sentry::wsgi (
   $wsgi_threads           = $sentry::wsgi_threads,
 ) {
 
-  if $apache_enabled {
-    $_apache_service_ensure = 'running'
-  } else {
-    $_apache_service_ensure = 'stopped'
-  }
-
   # this is a null declaration to ensure that the Apache module
   # doesn't try to helpfully create the docroot.
   #file{ $path: }
 
-  class { '::apache':
-    default_mods    => false,
-    default_vhost   => false,
-    purge_configs   => true,
-    service_enable  => $apache_enabled,
-    service_ensure  => $_apache_service_ensure,
-    service_restart => '/usr/sbin/apachectl graceful',
-    trace_enable    => 'Off',
-  }
   include apache::mod::alias
   include apache::mod::deflate
   include apache::mod::rewrite
