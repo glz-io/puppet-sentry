@@ -110,6 +110,8 @@ class sentry (
   $vhost                            = $sentry::params::vhost,
   $wsgi_processes                   = $sentry::params::wsgi_processes,
   $wsgi_threads                     = $sentry::params::wsgi_threads,
+  $wsgi_user                        = $sentry::params::wsgi_user,
+  $wsgi_group                       = $sentry::params::wsgi_group,
   $worker_concurrency               = $sentry::params::worker_concurrency,
   Boolean $workers_enabled          = true,
 ) inherits ::sentry::params {

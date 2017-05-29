@@ -38,6 +38,8 @@ class sentry::wsgi (
   $vhost                  = $sentry::vhost,
   $wsgi_processes         = $sentry::wsgi_processes,
   $wsgi_threads           = $sentry::wsgi_threads,
+  $wsgi_user              = $sentry::wsgi_user,
+  $wsgi_group             = $sentry::wsgi_group,
 ) {
 
   if $apache_enabled {
@@ -70,8 +72,8 @@ class sentry::wsgi (
   $python_path = "${path}/lib/${python}/site-packages/"
 
   $wsgi_options_hash = {
-      user         => 'apache',
-      group        => 'apache',
+      user         => $wsgi_user,
+      group        => $wsgi_group,
       processes    => $wsgi_processes,
       threads      => $wsgi_threads,
       display-name => 'wsgi_sentry',

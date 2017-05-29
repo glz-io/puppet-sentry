@@ -46,4 +46,6 @@ class sentry::params {
   $wsgi_processes     = 1
   $wsgi_threads       = 15
   $worker_concurrency = $facts['processors']['count']
+  $wsgi_user          = undef # defaults to the user apache runs as
+  $wsgi_group         = undef
 }
