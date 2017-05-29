@@ -70,11 +70,11 @@ class sentry::wsgi (
   # This may be used to allow applications to look up their DSN
   # automatically.  See the /examples/ directory for more.
   if $publish_dsns {
-    # this contortion is to work around the fact that Puppet tries
-    # to interpolate "$1" as a variable to dereference
-    $alias_string = join( [ $path, 'dsn/$1'], '/')
     $aliases = [
-      { aliasmatch => '^/dsn/([^/]+)$', path => $alias_string },
+      {
+        aliasmatch => '^/dsn/([^/]+)$',
+        path => "${path}/dsn/\$1",
+      },
     ]
   } else {
     $aliases = undef
