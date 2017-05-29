@@ -20,10 +20,11 @@
 # @param bootstrap Whether this node will bootstrap the database, admin, etc
 # @param custom_config array of custom configs to put into config.yml (undef)
 # @param custom_settings arrray of custom settings to put into sentry.conf.py (undef)
-# @param db_host the PostgreSQL database host (localhost)
-# @param db_name the name of the PostgreSQL database to use (sentry)
+# @param db_engine the kind of database engine to use (pgsql)
+# @param db_host the database host (localhost)
+# @param db_name the name of the database to use (sentry)
 # @param db_password the DB user's password (sentry)
-# @param db_port the PostgreSQL database port (5432)
+# @param db_port the database port (engine default)
 # @param db_user the user account with which to connect to the database (sentry)
 # @param email_from Email address sentry emails will come from
 # @param extensions hash of sentry extensions and source URL to install (sentry-github)
@@ -70,6 +71,7 @@ class sentry (
   Boolean $bootstrap                = $sentry::params::bootstrap,
   $custom_config                    = $sentry::params::custom_conifg,
   $custom_settings                  = $sentry::params::custom_settings,
+  $db_engine                        = $sentry::params::db_engine,
   $db_host                          = $sentry::params::db_host,
   $db_name                          = $sentry::params::db_name,
   $db_password                      = $sentry::params::db_password,
