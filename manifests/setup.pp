@@ -30,7 +30,7 @@ class sentry::setup (
   user { $user:
     ensure  => present,
     gid     => $group,
-    home    => '/dev/null',
+    home    => $path,
     shell   => '/bin/false',
     require => Group[$group],
   }
