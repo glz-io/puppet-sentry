@@ -3,6 +3,7 @@ class sentry::config (
   $admin_password    = $sentry::admin_password,
   $custom_config     = $sentry::custom_conifg,
   $custom_settings   = $sentry::custom_settings,
+  $db_engine         = $sentry::db_engine,
   $db_host           = $sentry::db_host,
   $db_name           = $sentry::db_name,
   $db_password       = $sentry::db_password,
@@ -38,6 +39,25 @@ class sentry::config (
     $_url_prefix = $url_prefix
   } else {
     $_url_prefix = "https://${sentry::vhost}"
+  }
+  $_db_engine = $db_engine? {
+    'mysql'      => 'django.db.backends.mysql',
+    'postgresql' => 'sentry.db.postgres',
+    'pgsql'      => 'sentry.db.postgres',
+    default      => $db_engine,
+  }
+
+  if $db_port == 'default' {
+    $_db_port = $_db_engine? {
+      'django.db.backends.mysql' => '3306',
+      'sentry.db.postgres'       => '5432',
+      default                    => '',
+    }
+    if $_db_port == '' {
+      fail('unknown db engine and no port specified')
+    }
+  } else {
+    $_db_port = $db_port
   }
 
   file { "${path}/sentry.conf.py":

@@ -5,10 +5,11 @@ class sentry::params {
   $bootstrap          = true
   $custom_config      = undef
   $custom_settings    = undef
+  $db_engine          = 'pgsql'
   $db_host            = 'localhost'
   $db_name            = 'sentry'
   $db_password        = 'sentry'
-  $db_port            = '5432'
+  $db_port            = 'default'
   $db_user            = 'sentry'
   $email_from         = "sentry@${::fqdn}"
   $extensions         = {}
