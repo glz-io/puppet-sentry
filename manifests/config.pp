@@ -1,7 +1,7 @@
 class sentry::config (
   $admin_email       = $sentry::admin_email,
   $admin_password    = $sentry::admin_password,
-  $custom_config     = $sentry::custom_conifg,
+  $custom_config     = $sentry::custom_config,
   $custom_settings   = $sentry::custom_settings,
   $db_engine         = $sentry::db_engine,
   $db_host           = $sentry::db_host,
