@@ -48,7 +48,7 @@ class sentry::setup (
       ensure_packages([
         'build-essential',
         'libffi-dev',
-        'libjpeg62-turbo-dev',
+        'libjpeg-dev',
         'libxml2-dev',
         'libxslt1-dev',
         'libldap2-dev',
