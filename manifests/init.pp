@@ -67,7 +67,7 @@ class sentry (
   $admin_email                      = $sentry::params::admin_email,
   $admin_password                   = $sentry::params::admin_password,
   Boolean $bootstrap                = $sentry::params::bootstrap,
-  $custom_config                    = $sentry::params::custom_conifg,
+  $custom_config                    = $sentry::params::custom_config,
   $custom_settings                  = $sentry::params::custom_settings,
   $db_engine                        = $sentry::params::db_engine,
   $db_host                          = $sentry::params::db_host,
